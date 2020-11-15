@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Word Captcha</title>
+    </head>
+    <body>
+        <div>
+            <button onclick="setValues();">Set Captcha</button>
+            <h2 id="main"></h2>
+            <h3><span id="num1"></span> <span id="symbol"></span> <span id="num2"></span></h3>
+            <input type="text" id="ans">
+            <button onclick="checkAns();">Submit</button>
+            <h3 id="check"></h3>
+        </div>
+
+        <div>
+            <h2>Calculator</h2>
+            <input type="text" id="x1">
+            <select id="opt">
+                <option value="" selected>Select Operator</option>
+                <option value="|">|</option>
+                <option value="^">^</option>
+                <option value="&">&</option>
+                <option value="<<"><<</option>
+                <option value=">>">>></option>
+            </select>
+            <input type="text" id="x2">
+            <button onclick="calculator();">Calculate</button>
+            <h4 id="cal"></h4>
+        </div>
+
+        <script>
+            var number1=Math.floor(Math.random()*10)+1;
+            var number2=Math.floor(Math.random()*10)+1;
+            var symbols=["|","&","^",">>","<<"];
+            var ind=Math.floor(Math.random()*6);
+            function setValues()
+            {
+                var n1=number1.toString();
+                var n2=number2.toString();
+                document.getElementById('main').innerHTML="Captcha : ";
+                document.getElementById('num1').innerHTML=n1;
+                document.getElementById('symbol').innerHTML=symbols[ind];
+                document.getElementById('num2').innerHTML=n2;
+            }
+
+            function checkAns()
+            {
+                var x=document.getElementById('ans').value;
+                if(symbols[ind]=='|')
+                {
+                    var cans=number1 | number2;
+                    if(cans==x)
+                        document.getElementById('check').innerHTML="You are a human";
+                    else
+                        document.getElementById('check').innerHTML="You are a robot";
+                }
+                else if(symbols[ind]=='&')
+                {
+                    var cans=number1 & number2;
+                    if(cans==x)
+                        document.getElementById('check').innerHTML="You are a human";
+                    else
+                        document.getElementById('check').innerHTML="You are a robot";
+                }
+                else if(symbols[ind]=='^')
+                {
+                    var cans=number1 ^ number2;
+                    if(cans==x)
+                        document.getElementById('check').innerHTML="You are a human";
+                    else
+                        document.getElementById('check').innerHTML="You are a robot";
+                }
+                else if(symbols[ind]=='>>')
+                {
+                    var cans=number1 >> number2;
+                    if(cans==x)
+                        document.getElementById('check').innerHTML="You are a human";
+                    else
+                        document.getElementById('check').innerHTML="You are a robot";
+                }
+                else if(symbols[ind]=='<<')
+                {
+                    var cans=number1 << number2;
+                    if(cans==x)
+                        document.getElementById('check').innerHTML="You are a human";
+                    else
+                        document.getElementById('check').innerHTML="You are a robot";
+                }
+            }
+
+            function calculator()
+            {
+                var x=document.getElementById('x1').value;
+                var y=document.getElementById('x2').value;
+                var sym=document.getElementById('opt').value;
+
+                if(sym=='|')
+                {
+                    var ans=x | y;
+                    document.getElementById('cal').innerHTML=ans;
+                }
+                if(sym=='&')
+                {
+                    var ans=x & y;
+                    document.getElementById('cal').innerHTML=ans;
+                }
+                if(sym=='^')
+                {
+                    var ans=x ^ y;
+                    document.getElementById('cal').innerHTML=ans;
+                }
+                if(sym=='>>')
+                {
+                    var ans=x >> y;
+                    document.getElementById('cal').innerHTML=ans;
+                }
+                if(sym=='<<')
+                {
+                    var ans=x << y;
+                    document.getElementById('cal').innerHTML=ans;
+                }
+            }
+        </script>
+    </body>
+</html>
